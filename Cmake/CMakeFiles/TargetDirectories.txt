@@ -1,0 +1,3 @@
+C:/Users/Valorum/Documents/WeatherApp/Cmake/CMakeFiles/WeatherApp.dir
+C:/Users/Valorum/Documents/WeatherApp/Cmake/CMakeFiles/ALL_BUILD.dir
+C:/Users/Valorum/Documents/WeatherApp/Cmake/CMakeFiles/ZERO_CHECK.dir

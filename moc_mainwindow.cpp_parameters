@@ -1,0 +1,7 @@
+-IC:/Users/Valorum/Documents/WeatherApp/Source
+-IC:/Users/Valorum/Documents/WeatherApp
+-DWIN32
+--compiler-flavor=msvc
+-o
+C:/Users/Valorum/Documents/WeatherApp/Source/moc_mainwindow.cpp
+C:/Users/Valorum/Documents/WeatherApp/Source/mainwindow.h

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Valorum\Documents\WeatherApp\start.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Valorum\Documents\WeatherApp\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Valorum\Documents\WeatherApp\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\moc_start.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\moc_mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\Valorum\Documents\WeatherApp\start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Valorum\Documents\WeatherApp\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\ui_start.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\CMakeFiles\17b2c01957b268eb839f692761d0399b\moc_start.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Valorum\Documents\WeatherApp\Cmake\CMakeFiles\17b2c01957b268eb839f692761d0399b\moc_mainwindow.cpp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Valorum\Documents\WeatherApp\start.ui" />
+    <CustomBuild Include="C:\Users\Valorum\Documents\WeatherApp\mainwindow.ui" />
+    <CustomBuild Include="C:\Users\Valorum\Documents\WeatherApp\CmakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DAE314E5-14B1-315C-88D6-9BFF61024B2E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3AB3BFC9-415D-3104-8657-D7E7A113DA05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{90D2B2D1-BB63-3459-ADF0-28ACD78D5CDE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
