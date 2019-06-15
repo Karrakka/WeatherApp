@@ -1,7 +1,0 @@
--IC:/Users/Valorum/Documents/WeatherApp
--IC:/Users/Valorum/Documents/WeatherApp/Cmake
--DWIN32
---compiler-flavor=msvc
--o
-C:/Users/Valorum/Documents/WeatherApp/Cmake/moc_start.cpp
-C:/Users/Valorum/Documents/WeatherApp/start.h

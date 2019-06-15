@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = WeatherApp
@@ -25,17 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        downloader.cpp \
         main.cpp \
         mainwindow.cpp \
         start.cpp
 
 HEADERS += \
+        downloader.h \
         mainwindow.h \
         start.h
 
-FORMS += \
-        mainwindow.ui \
-        start.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

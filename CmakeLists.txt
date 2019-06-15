@@ -6,20 +6,18 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
 
-set(project_ui
-    start.ui 
-    mainwindow.ui)
 
-set(project_headers 
+set(project_headers
+    downloader.h 
     start.h
     mainwindow.h)
 
-set(project_sources 
+set(project_sources
+    downloader.cpp 
     start.cpp
     main.cpp
     mainwindow.cpp)
 
-qt5_wrap_ui(project_headers_wrapped ${project_ui})
 qt5_wrap_cpp(project_sources_moc ${project_headers})
 
 add_executable(${PROJECT_NAME} ${project_headers} ${project_sources} 

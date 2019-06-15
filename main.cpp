@@ -1,14 +1,17 @@
 #include "mainwindow.h"
-#include <QApplication>
 #include "start.h"
-#include <QLabel>
-#include <QPixmap>
+#include "downloader.h"
+#include <QApplication>
+#include <QThread>
 int main(int argc, char *argv[])
 {    
     QApplication a(argc, argv);
-    MainWindow w;
-    Start w2;
-    w.show();
-    w2.show();
+    Downloader Download;
+    MainWindow MainWindow;
+    Start StartWindow;
+    StartWindow.show();
+    QThread::msleep(3000);
+    StartWindow.close();
+    MainWindow.show();
     return a.exec();
 }
