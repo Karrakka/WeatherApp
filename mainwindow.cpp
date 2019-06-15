@@ -17,10 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     file.close();    
     mainInfo = weatherDoc.object().value("main").toObject();
     systemInfo = weatherDoc.object().value("sys").toObject();
-    QString use1 = weatherDoc.object().value("name").toString();
-    QString use2 = systemInfo.value("country").toString();
-    QString use3 = QString::number(mainInfo.value("temp").toDouble() -273);
-    _textLabel->setText(use1 +" " + use2 + " " + use3);
+    QString city = weatherDoc.object().value("name").toString();
+    QString country = systemInfo.value("country").toString();
+    QString temperature = QString::number(mainInfo.value("temp").toDouble() -273);
+    _textLabel->setText(city +" " + country + " " + temperature);
     setLayout(mainLayout);
 }
 MainWindow::~MainWindow()
