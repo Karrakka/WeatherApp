@@ -33,7 +33,9 @@ SOURCES += \
 HEADERS += \
         downloader.h \
         mainwindow.h \
-        start.h
+        start.h \
+        weather.h \
+        weatherdata.h
 
 FORMS +=
 

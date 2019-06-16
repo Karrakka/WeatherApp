@@ -12,6 +12,7 @@
 #include <QJsonDocument>
 #include <QString>
 #include <QVBoxLayout>
+#include <QTimer>
 
 class MainWindow : public QWidget
 {
@@ -29,6 +30,7 @@ public:
 private slots:
 
 private:
+    QTimer *timer;
     QLabel *_textLabel = nullptr;
     QStandardItemModel *model = nullptr;
 };
