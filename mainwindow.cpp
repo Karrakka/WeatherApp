@@ -10,26 +10,45 @@ MainWindow::MainWindow(QWidget *parent) :
     auto mainLayout = new QVBoxLayout();
     mainLayout->addWidget(_textLabel);
 
-    QFile file;
+    QFile currentWeatherFile;
+    QFile forecastWeatherFile;
     //globPath =QFileDialog::getOpenFileName(nullptr,"","C:/","*.json");
-    file.setFileName("weather.json");
-    file.open(QIODevice::ReadOnly|QFile::Text);
-    weatherDoc =QJsonDocument::fromJson(QByteArray(file.readAll()),&docError);
-    file.close();    
+    currentWeatherFile.setFileName("weather.json");
+    forecastWeatherFile.setFileName("forecast.json");
+    currentWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
+    forecastWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
+    currentWeatherDoc =QJsonDocument::fromJson(QByteArray(currentWeatherFile.readAll()),&docError);
+    forecastWeatherDoc =QJsonDocument::fromJson(QByteArray(forecastWeatherFile.readAll()),&docError);
+    currentWeatherFile.close();
+    forecastWeatherFile.close();
 
-    QDate currentDate = QDateTime::currentDateTime().date();
-    mainInfo = weatherDoc.object().value("main").toObject();
-    systemInfo = weatherDoc.object().value("sys").toObject();
     Weather currentWeather;
+    QDate currentDate = QDateTime::currentDateTime().date();
+    mainInfo = currentWeatherDoc.object().value("main").toObject();
+    systemInfo = currentWeatherDoc.object().value("sys").toObject();
     currentWeather.date = currentDate.toString("d.MM.yyyy");
     currentWeather.time = QDateTime::currentDateTime().time().toString();
-    currentWeather.weatherData.city = weatherDoc.object().value("name").toString();
+    currentWeather.weatherData.city = currentWeatherDoc.object().value("name").toString();
     currentWeather.weatherData.region = systemInfo.value("country").toString();
     currentWeather.weatherData.temperature = QString::number(mainInfo.value("temp").toDouble() -273);
 
+    Weather forecastWeather[3];
+
+    docArray = QJsonValue(forecastWeatherDoc.object().value("list")).toArray();
+    int j=0;
+    for (int i=6;i<=22;i+=8)
+    {
+        forecastMainInfo = docArray.at(i).toObject().value("main").toObject();
+        forecastWeather[j].weatherData.temperature = QString::number(forecastMainInfo.value("temp").toDouble() -273);
+        j++;
+    }
+
     _textLabel->setText(currentWeather.weatherData.city
                         + "\n" + currentWeather.weatherData.region
-                        + "\n" + currentWeather.weatherData.temperature
+                        + "\n Сейчас: " + currentWeather.weatherData.temperature
+                        + " °C\n Завтра: " + forecastWeather[0].weatherData.temperature
+                        + " °C\n Послеавтра: " + forecastWeather[1].weatherData.temperature
+                        + " °C\n Послепослезавтра: " + forecastWeather[2].weatherData.temperature
                         + " °C\n" + currentWeather.date
                         + "\n" + currentWeather.time);
     setLayout(mainLayout);

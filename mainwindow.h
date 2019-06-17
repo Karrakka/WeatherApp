@@ -22,10 +22,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    QJsonDocument weatherDoc;
+    QJsonDocument currentWeatherDoc;
+    QJsonDocument forecastWeatherDoc;
     QJsonObject systemInfo;
     QJsonObject mainInfo;
+    QJsonObject forecastMainInfo;
     QJsonParseError docError;
+    QJsonArray docArray;
 
 private slots:
 

@@ -14,13 +14,18 @@ public:
 
     Downloader();
     ~Downloader();
-    QNetworkAccessManager* networkManager;
-    QNetworkRequest request;
+    QNetworkAccessManager* weatherNetworkManager;
+    QNetworkRequest weatherRequest;
+
+    QNetworkAccessManager* forecastNetworkManager;
+    QNetworkRequest forecastRequest;
+
     QNetworkReply *reply;
 
 private slots:
 
-    void onReply(QNetworkReply*);
+    void onWeatherReply(QNetworkReply*);
+    void onForecastReply(QNetworkReply*);
 };
 
 #endif // DOWNLOADER_H
