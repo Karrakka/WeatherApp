@@ -4,10 +4,12 @@ project(WeatherApp LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui)
+find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui Network)
 
 
 set(project_headers
+    weather.h
+    weatherdata.h	
     downloader.h 
     start.h
     mainwindow.h)
@@ -24,7 +26,9 @@ add_executable(${PROJECT_NAME} ${project_headers} ${project_sources}
     ${project_sources_moc} ${project_headers_wrapped})
 
 target_link_libraries(${PROJECT_NAME} 
-    PUBLIC 
+    PUBLIC
+    PUBLIC
+    Qt5::Network	 
     Qt5::Core
     Qt5::Gui
     Qt5::Widgets)

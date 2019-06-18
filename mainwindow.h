@@ -22,6 +22,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private:
+
     QJsonDocument currentWeatherDoc;
     QJsonDocument forecastWeatherDoc;
     QJsonObject systemInfo;
@@ -29,13 +31,10 @@ public:
     QJsonObject forecastMainInfo;
     QJsonParseError docError;
     QJsonArray docArray;
-
-private slots:
-
-private:
-    QTimer *timer;
     QLabel *_textLabel = nullptr;
-    QStandardItemModel *model = nullptr;
+    QFile currentWeatherFile;
+    QFile forecastWeatherFile;
+
 };
 
 #endif // MAINWINDOW_H

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "weather.h"
+#include "downloader.h"
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent)
 {
@@ -10,16 +11,15 @@ MainWindow::MainWindow(QWidget *parent) :
     auto mainLayout = new QVBoxLayout();
     mainLayout->addWidget(_textLabel);
 
-    QFile currentWeatherFile;
-    QFile forecastWeatherFile;
     //globPath =QFileDialog::getOpenFileName(nullptr,"","C:/","*.json");
     currentWeatherFile.setFileName("weather.json");
-    forecastWeatherFile.setFileName("forecast.json");
     currentWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
-    forecastWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
     currentWeatherDoc =QJsonDocument::fromJson(QByteArray(currentWeatherFile.readAll()),&docError);
-    forecastWeatherDoc =QJsonDocument::fromJson(QByteArray(forecastWeatherFile.readAll()),&docError);
     currentWeatherFile.close();
+
+    forecastWeatherFile.setFileName("forecast.json");    
+    forecastWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
+    forecastWeatherDoc =QJsonDocument::fromJson(QByteArray(forecastWeatherFile.readAll()),&docError);
     forecastWeatherFile.close();
 
     Weather currentWeather;
@@ -53,8 +53,10 @@ MainWindow::MainWindow(QWidget *parent) :
                         + "\n" + currentWeather.time);
     setLayout(mainLayout);
 }
+
 MainWindow::~MainWindow()
 {
     this->destroy();
+
 }
 

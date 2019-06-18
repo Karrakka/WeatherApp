@@ -12,7 +12,7 @@ Downloader::Downloader(){
     forecastRequest.setUrl(QUrl("http://api.openweathermap.org/data/2.5/forecast?id=1489425&appid=5fa020e093bac007d546bbea0df938e0"));
 
     weatherNetworkManager->get(weatherRequest);
-    forecastNetworkManager->get(forecastRequest);
+    forecastNetworkManager->get(forecastRequest);   
 }
 Downloader::~Downloader()
 {
@@ -26,7 +26,6 @@ void Downloader::onWeatherReply(QNetworkReply *reply)
     file.open(QIODevice::WriteOnly|QFile::Text);
     file.write(reply->readAll());
     file.close();
-
 }
 void Downloader::onForecastReply(QNetworkReply *reply)
 {
@@ -35,5 +34,4 @@ void Downloader::onForecastReply(QNetworkReply *reply)
     file.open(QIODevice::WriteOnly|QFile::Text);
     file.write(reply->readAll());
     file.close();
-
 }

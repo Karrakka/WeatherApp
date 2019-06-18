@@ -1,11 +1,13 @@
 #ifndef DOWNLOADER_H
 #define DOWNLOADER_H
 
-#include <QNetworkAccessManager>
-#include <QNetworkRequest>
-#include <QNetworkReply>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkAccessManager>
+#include <QtNetwork/QNetworkRequest>
+#include <QtNetwork/QNetworkReply>
 #include <QDebug>
 #include <QFile>
+#include <QJsonDocument>
 class Downloader: public QObject
 {
     Q_OBJECT
@@ -14,6 +16,9 @@ public:
 
     Downloader();
     ~Downloader();
+
+private:
+
     QNetworkAccessManager* weatherNetworkManager;
     QNetworkRequest weatherRequest;
 
