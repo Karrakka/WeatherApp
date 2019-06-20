@@ -13,7 +13,9 @@
 #include <QString>
 #include <QVBoxLayout>
 #include <QTimer>
-
+#include <QLayout>
+#include <QTextEdit>
+#include <QHBoxLayout>
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -32,9 +34,15 @@ private:
     QJsonParseError docError;
     QJsonArray docArray;
     QLabel *_textLabel = nullptr;
+    QTextEdit *today = nullptr;
+    QTextEdit *nextDay = nullptr;
+    QTextEdit *nextNextDay = nullptr;
+    QTextEdit *nextNextNextDay = nullptr;
+    QTextEdit *predictionQuality1Day = nullptr;
+    QTextEdit *predictionQuality2Days = nullptr;
+    QTextEdit *predictionQuality3Days = nullptr;
     QFile currentWeatherFile;
     QFile forecastWeatherFile;
-
 };
 
 #endif // MAINWINDOW_H
