@@ -11,11 +11,9 @@
 #include <QStandardItem>
 #include <QJsonDocument>
 #include <QString>
-#include <QVBoxLayout>
 #include <QTimer>
 #include <QLayout>
 #include <QTextEdit>
-#include <QHBoxLayout>
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -41,6 +39,7 @@ private:
     QTextEdit *predictionQuality1Day = nullptr;
     QTextEdit *predictionQuality2Days = nullptr;
     QTextEdit *predictionQuality3Days = nullptr;
+    QTextEdit *picture = nullptr;
     QFile currentWeatherFile;
     QFile forecastWeatherFile;
 };
