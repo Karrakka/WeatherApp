@@ -14,6 +14,7 @@
 #include <QTimer>
 #include <QLayout>
 #include <QTextEdit>
+#include <QApplication>
 class MainWindow : public QWidget
 {
     Q_OBJECT

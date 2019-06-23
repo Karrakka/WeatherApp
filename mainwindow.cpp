@@ -4,6 +4,10 @@
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent)
 {
+    for (int i = 0; i < 100000; i++)
+    {
+        qApp->processEvents();
+    }
     resize(600,400);
     setMinimumSize(500,400);
 
@@ -55,7 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
     weatherLayout->addWidget(nextNextNextDay,0,3);
     mainLayout->addLayout(weatherLayout);
 
-    //globPath =QFileDialog::getOpenFileName(nullptr,"","C:/","*.json");
     currentWeatherFile.setFileName("weather.json");
     currentWeatherFile.open(QIODevice::ReadOnly|QFile::Text);
     currentWeatherDoc =QJsonDocument::fromJson(QByteArray(currentWeatherFile.readAll()),&docError);
