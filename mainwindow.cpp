@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QDate currentDate = QDateTime::currentDateTime().date();
     mainInfo = currentWeatherDoc.object().value("main").toObject();
     systemInfo = currentWeatherDoc.object().value("sys").toObject();
-    currentWeather.date = currentDate.toString("d.MM.yyyy");
+    currentWeather.date = currentDate.toString("dd.MM.yyyy");
     currentWeather.time = QDateTime::currentDateTime().time().toString();
     currentWeather.weatherData.city = currentWeatherDoc.object().value("name").toString();
     currentWeather.weatherData.region = systemInfo.value("country").toString();
@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     docArray = QJsonValue(forecastWeatherDoc.object().value("list")).toArray();
     int j=0;
-    for (int i=6;i<=22;i+=8)
+    for (int i=6; i<=22; i+=8)
     {
         forecastMainInfo = docArray.at(i).toObject().value("main").toObject();
         forecastWeather[j].weatherData.temperature = QString::number(forecastMainInfo.value("temp").toDouble() -273);
@@ -93,6 +93,57 @@ MainWindow::MainWindow(QWidget *parent) :
     nextDay->setText("Завтра: "+ forecastWeather[0].weatherData.temperature + "°C");
     nextNextDay->setText("Послезавтра: "+ forecastWeather[1].weatherData.temperature + "°C");
     nextNextNextDay->setText("Послепослезавтра: "+ forecastWeather[2].weatherData.temperature+"°C");
+
+    QDate _1day = QDateTime::currentDateTime().date().addDays(1);
+    QDate _2days = QDateTime::currentDateTime().date().addDays(2);
+    QDate _3days = QDateTime::currentDateTime().date().addDays(3);
+
+    QFile qualityFile("quality.json");
+    if (qualityFile.exists())
+    {
+        qualityFile.open(QIODevice::ReadOnly|QFile::Text);
+        QJsonDocument testDoc =QJsonDocument::fromJson(QByteArray(qualityFile.readAll()),&docError);
+        QJsonArray testArray =QJsonValue(testDoc.object().value("main")).toArray();
+        for (int i=0; i<3; i++)
+        {
+            QJsonObject testObject = testArray.at(i).toObject();
+            if (testObject.value("date").toString("dd.MM.yyyy")=="26.06.2019")
+            {
+                qDebug()<<"День совпал";
+            }
+        }
+
+    }
+    else
+    {
+        qualityFile.open(QIODevice::WriteOnly|QFile::Text);
+
+        QVariantMap qualityMap1Day;
+        qualityMap1Day.insert("date",_1day.toString("dd.MM.yyyy"));
+        qualityMap1Day.insert("temp",forecastWeather[0].weatherData.temperature);
+
+        QVariantMap qualityMap2Days;
+        qualityMap2Days.insert("date",_2days.toString("dd.MM.yyyy"));
+        qualityMap2Days.insert("temp",forecastWeather[1].weatherData.temperature);
+
+        QVariantMap qualityMap3Days;
+        qualityMap3Days.insert("date",_3days.toString("dd.MM.yyyy"));
+        qualityMap3Days.insert("temp",forecastWeather[2].weatherData.temperature);
+
+        QJsonObject qualityJson1Day =QJsonObject::fromVariantMap(qualityMap1Day);
+        QJsonObject qualityJson2Days =QJsonObject::fromVariantMap(qualityMap2Days);
+        QJsonObject qualityJson3Days =QJsonObject::fromVariantMap(qualityMap3Days);
+
+        QJsonArray qualityArray;
+
+        qualityArray.append(qualityJson1Day);
+        qualityArray.append(qualityJson2Days);
+        qualityArray.append(qualityJson3Days);
+
+        QJsonDocument qualityDoc;
+        qualityDoc.setArray(qualityArray);
+        qualityFile.write("{\"main\":" + qualityDoc.toJson() + "}");
+    }
 
     setLayout(mainLayout);
 }
