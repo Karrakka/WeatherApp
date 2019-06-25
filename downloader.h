@@ -21,10 +21,7 @@ private:
 
     QNetworkAccessManager* weatherNetworkManager;
     QNetworkRequest weatherRequest;
-
-    QNetworkAccessManager* forecastNetworkManager;
     QNetworkRequest forecastRequest;
-
     QNetworkReply *reply;
 
 private slots:
