@@ -5,8 +5,8 @@
 struct Weather
 {
     weatherData weatherData;
-    QString date;
-    QString time;
+    QDate date;
+    QTime time;
 };
 
 #endif // WEATHER_H

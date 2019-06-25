@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent)
 {
-    for (int i = 0; i < 100000; i++)
+    for (int i = 0; i < 200000; i++)
     {
         qApp->processEvents();
     }
@@ -73,8 +73,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QDate currentDate = QDateTime::currentDateTime().date();
     mainInfo = currentWeatherDoc.object().value("main").toObject();
     systemInfo = currentWeatherDoc.object().value("sys").toObject();
-    currentWeather.date = currentDate.toString("dd.MM.yyyy");
-    currentWeather.time = QDateTime::currentDateTime().time().toString();
+    currentWeather.date = QDateTime::currentDateTime().date();
+    currentWeather.time = QDateTime::currentDateTime().time();
     currentWeather.weatherData.city = currentWeatherDoc.object().value("name").toString();
     currentWeather.weatherData.region = systemInfo.value("country").toString();
     currentWeather.weatherData.temperature = QString::number(mainInfo.value("temp").toDouble() -273);
