@@ -15,6 +15,7 @@
 #include <QLayout>
 #include <QTextEdit>
 #include <QApplication>
+#include <QtMath>
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -37,9 +38,7 @@ private:
     QTextEdit *nextDay = nullptr;
     QTextEdit *nextNextDay = nullptr;
     QTextEdit *nextNextNextDay = nullptr;
-    QTextEdit *predictionQuality1Day = nullptr;
-    QTextEdit *predictionQuality2Days = nullptr;
-    QTextEdit *predictionQuality3Days = nullptr;
+    QTextEdit *predictionQuality[3];
     QTextEdit *picture = nullptr;
     QFile currentWeatherFile;
     QFile forecastWeatherFile;
