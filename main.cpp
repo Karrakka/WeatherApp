@@ -1,18 +1,18 @@
 #include "mainwindow.h"
-#include "start.h"
 #include "downloader.h"
 #include <QApplication>
 #include <QThread>
-
+#include <QTimer>
+#include <QSplashScreen>
 int main(int argc, char *argv[])
 {    
     QApplication a(argc, argv);
     Downloader Download;
-    Start StartWindow;
-    StartWindow.show();
-    QThread::msleep(3000);
-    StartWindow.close();
     MainWindow MainWindow;
-    MainWindow.show();
+    QSplashScreen *startScreen = new QSplashScreen;
+    startScreen->setPixmap(QPixmap(600,400));
+    startScreen->show();
+    QTimer::singleShot(3000,startScreen,SLOT(close()));
+    QTimer::singleShot(3000,&MainWindow,SLOT(show()));
     return a.exec();
 }

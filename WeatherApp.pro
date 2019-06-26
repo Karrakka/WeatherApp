@@ -27,13 +27,11 @@ CONFIG += c++11
 SOURCES += \
         downloader.cpp \
         main.cpp \
-        mainwindow.cpp \
-        start.cpp
+        mainwindow.cpp
 
 HEADERS += \
         downloader.h \
         mainwindow.h \
-        start.h \
         weather.h \
         weatherdata.h
 

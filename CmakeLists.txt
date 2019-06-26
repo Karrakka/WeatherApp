@@ -11,12 +11,10 @@ set(project_headers
     weather.h
     weatherdata.h	
     downloader.h 
-    start.h
     mainwindow.h)
 
 set(project_sources
     downloader.cpp 
-    start.cpp
     main.cpp
     mainwindow.cpp)
 
