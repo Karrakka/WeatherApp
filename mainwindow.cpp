@@ -118,14 +118,40 @@ MainWindow::MainWindow(QWidget *parent) :
         QJsonArray qualityArray =QJsonValue(qualityDoc.object().value("main")).toArray();
         for (int i=0; i<3; i++)
         {
-            QJsonObject testObject = qualityArray.at(i).toObject();
-            if (testObject.value("date").toString("dd.MM.yyyy")==currentDate.toString("dd.MM.yyyy"))
+            QJsonObject qualityObject = qualityArray.at(i).toObject();
+            if (qualityObject.value("date").toString("dd.MM.yyyy")==currentDate.toString("dd.MM.yyyy"))
             {
-                quality=QString::number(qFabs(testObject.value("temp").toDouble() - qFloor((mainInfo.value("temp").toDouble() -273))));
+                quality=QString::number(qFabs(qualityObject.value("temp").toDouble() - qFloor((mainInfo.value("temp").toDouble() -273))));
                 predictionQuality[i]->setText("Предсказание погоды отличается на " + quality + "°C");
             }
         }
-
+        qualityFile.close();
+        qualityFile.open(QIODevice::WriteOnly|QFile::Text);
+        QVariantMap qualityMap[3];
+        QJsonObject qualityJson[3];
+        QJsonArray rewriteArray;
+        QJsonDocument rewriteDoc;
+        for (int i=0;i<3;i++)
+        {
+            QJsonObject qualityObject = qualityArray.at(i).toObject();
+            if (qualityObject.value("date").toString("dd.MM.yyyy")==currentDate.toString("dd.MM.yyyy"))
+            {
+                qualityMap[i].insert("date",currentDate.addDays(i+1).toString("dd.MM.yyyy"));
+                qualityMap[i].insert("temp",forecastWeather[i].weatherData.temperature.toDouble());
+                qualityJson[i]=QJsonObject::fromVariantMap(qualityMap[i]);
+                rewriteArray.append(qualityJson[i]);
+            }
+            else
+            {
+                qualityMap[i].insert("date",qualityObject.value("date").toString("dd.MM.yyyy"));
+                qualityMap[i].insert("temp",qualityObject.value("temp").toDouble());
+                qualityJson[i]=QJsonObject::fromVariantMap(qualityMap[i]);
+                rewriteArray.append(qualityJson[i]);
+            }
+        }
+        rewriteDoc.setArray(rewriteArray);
+        qualityFile.write("{\"main\":" + rewriteDoc.toJson() + "}");
+        qualityFile.close();
     }
     else
     {
@@ -156,6 +182,7 @@ MainWindow::MainWindow(QWidget *parent) :
         QJsonDocument qualityDoc;
         qualityDoc.setArray(qualityArray);
         qualityFile.write("{\"main\":" + qualityDoc.toJson() + "}");
+        qualityFile.close();
     }
     setLayout(mainLayout);
 }
