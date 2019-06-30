@@ -16,7 +16,10 @@
 #include <QTextEdit>
 #include <QApplication>
 #include <QtMath>
-class MainWindow : public QWidget
+#include <QMenuBar>
+#include <QMenu>
+#include <QMessageBox>
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -42,6 +45,12 @@ private:
     QTextEdit *picture = nullptr;
     QFile currentWeatherFile;
     QFile forecastWeatherFile;
+    QWidget *mainWidget;
+    QMenuBar *menuBar;
+    QMenu *weatherMenu;
+    QAction *aboutAction;
+private slots:
+    void onAboutClicked();
 };
 
 #endif // MAINWINDOW_H

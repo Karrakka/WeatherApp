@@ -1,16 +1,27 @@
 #include "mainwindow.h"
 #include "weather.h"
 #include "downloader.h"
+#include <QStackedWidget>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
 MainWindow::MainWindow(QWidget *parent) :
-    QWidget(parent)
+    QMainWindow(parent)
 {
+    mainWidget = new QWidget(this);
+    menuBar = new QMenuBar(this);
+    weatherMenu = new QMenu("Погода",this);
+    aboutAction = weatherMenu->addAction("О программе");
+    connect(aboutAction,&QAction::triggered,this,&MainWindow::onAboutClicked);
+    menuBar->addMenu(weatherMenu);
+
     for (int i = 0; i < 200000; i++)
     {
         qApp->processEvents();
     }
+
     resize(600,400);
     setMinimumSize(500,400);
-
     picture = new QTextEdit(this);
     picture->setReadOnly(true);
     picture->setTabChangesFocus(true);
@@ -57,6 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     weatherLayout->addWidget(nextDay,0,1);
     weatherLayout->addWidget(nextNextDay,0,2);
     weatherLayout->addWidget(nextNextNextDay,0,3);
+
     mainLayout->addLayout(weatherLayout);
 
     currentWeatherFile.setFileName("weather.json");
@@ -184,7 +196,9 @@ MainWindow::MainWindow(QWidget *parent) :
         qualityFile.write("{\"main\":" + qualityDoc.toJson() + "}");
         qualityFile.close();
     }
-    setLayout(mainLayout);
+    setMenuBar(menuBar);
+    setCentralWidget(mainWidget);
+    mainWidget->setLayout(mainLayout);
 }
 
 MainWindow::~MainWindow()
@@ -192,4 +206,7 @@ MainWindow::~MainWindow()
     this->destroy();
 
 }
-
+void MainWindow::onAboutClicked()
+{
+    QMessageBox::about(this,"О приложении","Приложение \"Погода\"");
+}
