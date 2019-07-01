@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     weatherMenu = new QMenu("Погода",this);
     aboutAction = weatherMenu->addAction("О программе");
     connect(aboutAction,&QAction::triggered,this,&MainWindow::onAboutClicked);
+    cityAction = weatherMenu->addAction("Выбор города");
+    connect(cityAction,&QAction::triggered,this,&MainWindow::onCityClicked);
     menuBar->addMenu(weatherMenu);
 
     for (int i = 0; i < 200000; i++)
@@ -209,4 +211,17 @@ MainWindow::~MainWindow()
 void MainWindow::onAboutClicked()
 {
     QMessageBox::about(this,"О приложении","Приложение \"Погода\"");
+}
+void MainWindow::onCityClicked()
+{
+    bool isChanged;
+    QString city = QInputDialog::getText(this,"Выбор города","Введите город",QLineEdit::Normal,"",&isChanged);
+    if(isChanged)
+    {
+        QSettings citySetting("City");
+        citySetting.setValue("city",city);
+        QMessageBox::about(this,"","Город будет изменен после перезапуска");
+    }
+    else
+        QMessageBox::about(this,"","Отмена");
 }

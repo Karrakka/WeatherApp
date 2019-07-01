@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QJsonDocument>
+#include <QSettings>
 class Downloader: public QObject
 {
     Q_OBJECT

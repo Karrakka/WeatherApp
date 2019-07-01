@@ -19,6 +19,8 @@
 #include <QMenuBar>
 #include <QMenu>
 #include <QMessageBox>
+#include <QSettings>
+#include <QInputDialog>
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -49,8 +51,10 @@ private:
     QMenuBar *menuBar;
     QMenu *weatherMenu;
     QAction *aboutAction;
+    QAction *cityAction;
 private slots:
     void onAboutClicked();
+    void onCityClicked();
 };
 
 #endif // MAINWINDOW_H

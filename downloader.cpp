@@ -6,8 +6,10 @@ Downloader::Downloader()
     connect(weatherNetworkManager,&QNetworkAccessManager::finished,this,&Downloader::onForecastReply);
     connect(weatherNetworkManager,&QNetworkAccessManager::finished,this,&Downloader::onWeatherReply);
 
-    weatherRequest.setUrl(QUrl("http://api.openweathermap.org/data/2.5/weather?id=1489425&appid=5fa020e093bac007d546bbea0df938e0"));
-    forecastRequest.setUrl(QUrl("http://api.openweathermap.org/data/2.5/forecast?id=1489425&appid=5fa020e093bac007d546bbea0df938e0"));
+    QSettings citySetting("City");
+    QString city =citySetting.value("city","Томск").toString();
+    weatherRequest.setUrl(QUrl("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=5fa020e093bac007d546bbea0df938e0"));
+    forecastRequest.setUrl(QUrl("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=5fa020e093bac007d546bbea0df938e0"));
 
     weatherNetworkManager->get(weatherRequest);
     weatherNetworkManager->get(forecastRequest);
