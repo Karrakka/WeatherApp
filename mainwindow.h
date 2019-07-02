@@ -44,7 +44,7 @@ private:
     QTextEdit *nextNextDay = nullptr;
     QTextEdit *nextNextNextDay = nullptr;
     QTextEdit *predictionQuality[3];
-    QTextEdit *picture = nullptr;
+    QLabel *picture = nullptr;
     QFile currentWeatherFile;
     QFile forecastWeatherFile;
     QWidget *mainWidget;

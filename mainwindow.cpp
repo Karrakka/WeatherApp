@@ -23,10 +23,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     resize(600,400);
-    setMinimumSize(500,400);
-    picture = new QTextEdit(this);
-    picture->setReadOnly(true);
-    picture->setTabChangesFocus(true);
+    setMinimumSize(600,400);
+    picture = new QLabel(this);
+    picture->setPixmap(QPixmap(":/img/Picture.png"));
+    picture->setFixedSize(450,250);
+    picture->setMargin(10);
 
     today = new QTextEdit(this);
     today->setReadOnly(true);
@@ -115,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent) :
             break;
     }
 
-    today->setText("Сегодня: "+ currentWeather.weatherData.temperature + "°C");
+    today->setText("Сегодня: "+ currentWeather.weatherData.temperature + "°C\nТекущий город:"+currentWeather.weatherData.city);
     nextDay->setText("Завтра: "+ forecastWeather[0].weatherData.temperature + "°C");
     nextNextDay->setText("Послезавтра: "+ forecastWeather[1].weatherData.temperature + "°C");
     nextNextNextDay->setText("Послепослезавтра: "+ forecastWeather[2].weatherData.temperature+"°C");
@@ -221,6 +222,7 @@ void MainWindow::onCityClicked()
         QSettings citySetting("City");
         citySetting.setValue("city",city);
         QMessageBox::about(this,"","Город будет изменен после перезапуска");
+        QFile::remove("quality.json");
     }
     else
         QMessageBox::about(this,"","Отмена");

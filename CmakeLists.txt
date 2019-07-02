@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.10.0 FATAL_ERROR)
 project(WeatherApp LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 REQUIRED COMPONENTS Core Widgets Gui Network)
 
@@ -20,8 +21,6 @@ set(project_sources
 
 set(project_resources
     resources.qrc) 
-
-configure_file(Weather.jpg /img/Weather.jpg COPYONLY)
 
 qt5_wrap_cpp(project_sources_moc ${project_headers})
 

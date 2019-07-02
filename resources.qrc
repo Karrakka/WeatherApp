@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/img">
         <file>Weather.jpg</file>
+        <file>Picture.png</file>
     </qresource>
 </RCC>
