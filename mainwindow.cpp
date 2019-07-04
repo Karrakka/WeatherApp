@@ -1,10 +1,7 @@
 #include "mainwindow.h"
 #include "weather.h"
 #include "downloader.h"
-#include <QStackedWidget>
-#include <QMenuBar>
-#include <QMenu>
-#include <QAction>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -207,7 +204,6 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     this->destroy();
-
 }
 void MainWindow::onAboutClicked()
 {

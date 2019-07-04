@@ -2,13 +2,13 @@
 #define DOWNLOADER_H
 
 #include <QtNetwork/QNetworkAccessManager>
-#include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkRequest>
 #include <QtNetwork/QNetworkReply>
 #include <QDebug>
 #include <QFile>
 #include <QJsonDocument>
 #include <QSettings>
+
 class Downloader: public QObject
 {
     Q_OBJECT

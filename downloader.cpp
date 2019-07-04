@@ -1,4 +1,5 @@
 #include "downloader.h"
+
 Downloader::Downloader()
 {
     weatherNetworkManager = new QNetworkAccessManager(this);
@@ -21,23 +22,21 @@ void Downloader::onWeatherReply(QNetworkReply *reply)
 {
     if (reply->request()==weatherRequest)
     {
-    QFile file;
-    file.setFileName("weather.json");
-    file.open(QIODevice::WriteOnly|QFile::Text);
-    file.write(reply->readAll());
-    file.close();
-    reply->deleteLater();
+        QFile file;
+        file.setFileName("weather.json");
+        file.open(QIODevice::WriteOnly|QFile::Text);
+        file.write(reply->readAll());
+        file.close();
     }
 }
 void Downloader::onForecastReply(QNetworkReply *reply)
 {
     if (reply->request()==forecastRequest)
     {
-    QFile file;
-    file.setFileName("forecast.json");
-    file.open(QIODevice::WriteOnly|QFile::Text);
-    file.write(reply->readAll());
-    file.close();
-    reply->deleteLater();
+        QFile file;
+        file.setFileName("forecast.json");
+        file.open(QIODevice::WriteOnly|QFile::Text);
+        file.write(reply->readAll());
+        file.close();
     }
 }

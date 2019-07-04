@@ -1,9 +1,11 @@
 #include "mainwindow.h"
 #include "downloader.h"
+
 #include <QApplication>
 #include <QThread>
 #include <QTimer>
 #include <QSplashScreen>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

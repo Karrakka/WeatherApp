@@ -1,5 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QLabel>
 #include <QMainWindow>
 #include <QWidget>
@@ -21,6 +22,7 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QInputDialog>
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -52,6 +54,7 @@ private:
     QMenu *weatherMenu;
     QAction *aboutAction;
     QAction *cityAction;
+
 private slots:
     void onAboutClicked();
     void onCityClicked();
